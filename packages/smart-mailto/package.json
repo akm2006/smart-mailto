@@ -46,7 +46,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akm2006/smart-mailto.git"
+    "url": "git+https://github.com/akm2006/smart-mailto.git"
   },
   "bugs": {
     "url": "https://github.com/akm2006/smart-mailto/issues"
