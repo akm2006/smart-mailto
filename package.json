@@ -5,7 +5,7 @@
   "description": "Zero-dependency, zero-backend smart email dispatcher for modern web apps",
   "scripts": {
     "dev": "pnpm --filter web dev",
-    "build": "pnpm --filter smart-mailto build && pnpm --filter web build",
+    "build": "pnpm --filter smart-mailto build && pnpm --filter web build && node -e \"const fs=require('fs'); if(fs.existsSync('apps/web/dist')){fs.cpSync('apps/web/dist','dist',{recursive:true})}\"",
     "build:lib": "pnpm --filter smart-mailto build",
     "build:web": "pnpm --filter web build",
     "test": "pnpm --filter smart-mailto test",
