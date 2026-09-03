@@ -1,0 +1,78 @@
+{
+  "name": "smart-mailto",
+  "version": "1.0.0",
+  "description": "Zero-dependency, zero-backend smart email dispatcher for modern web apps. Replaces broken desktop mailto: with Gmail, Outlook, Yahoo, Proton, and native fallback.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mailto",
+    "email",
+    "gmail",
+    "outlook",
+    "protonmail",
+    "webmail",
+    "contact-form",
+    "zero-backend",
+    "react-hook",
+    "smart-mailto"
+  ],
+  "author": "Akash (akm2006)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akm2006/smart-mailto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akm2006/smart-mailto/issues"
+  },
+  "homepage": "https://github.com/akm2006/smart-mailto#readme",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "happy-dom": "^17.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0"
+  }
+}
