@@ -1,0 +1,26 @@
+{
+  "name": "smart-mailto-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Zero-dependency, zero-backend smart email dispatcher for modern web apps",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter smart-mailto build && pnpm --filter web build",
+    "build:lib": "pnpm --filter smart-mailto build",
+    "build:web": "pnpm --filter web build",
+    "test": "pnpm --filter smart-mailto test",
+    "test:coverage": "pnpm --filter smart-mailto test:coverage",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "keywords": [
+    "mailto",
+    "gmail",
+    "outlook",
+    "webmail",
+    "contact-form",
+    "email-link",
+    "zero-backend"
+  ],
+  "author": "Akash (akm2006)",
+  "license": "MIT"
+}
