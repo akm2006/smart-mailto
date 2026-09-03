@@ -1,0 +1,30 @@
+# smart-mailto
+> The zero-backend, zero-dependency smart email dispatcher and UI suite for modern web applications.
+
+Traditional `mailto:` links fail on desktop browsers by attempting to launch unconfigured native email applications, losing 40%+ of inbound leads. `smart-mailto` intelligently routes desktop users directly to active webmail clients (Gmail, Outlook 365, ProtonMail, Yahoo Mail) in a background tab with prefilled context, while maintaining native mail sheets on mobile devices.
+
+## Key Features
+- **0 kB Runtime Dependencies**: Pure TypeScript with zero bundle bloat (< 2 kB gzipped).
+- **Dual-Path Dispatch Engine**: Fine-pointer desktop webmail tabs vs. coarse-touch mobile OS sheets.
+- **Resilient Fallback**: Automatic popup blocker detection and 2,000 character URL length guards with clipboard synchronization.
+- **SSR Safe**: Compatible with Next.js (App & Pages Router), Remix, Astro, SvelteKit, and Vanilla JS.
+- **Zero Backend Required**: $0 monthly infrastructure, no SMTP servers, and no API credentials bundled in client code.
+
+## Quick Install
+```bash
+# pnpm
+pnpm add smart-mailto
+
+# npm
+npm install smart-mailto
+
+# yarn / bun
+bun add smart-mailto
+```
+
+## Documentation & API Index
+- [Quickstart & Examples](/llms-full.txt#quickstart): Full code samples for React hooks, drop-in components, and vanilla JS.
+- [React Hook API](/llms-full.txt#usesmartmailto): Documentation for `useSmartMailto`.
+- [Drop-in UI Components](/llms-full.txt#components): `<SmartMailtoButton />`, `<SmartMailtoMenu />`, `<SmartMailtoModal />`.
+- [Core Framework-Agnostic Engine](/llms-full.txt#core-dispatch): `dispatchSmartEmail`, `detectClientDevice`, `copyDraftToClipboard`.
+- [Provider Routing Specs](/llms-full.txt#providers): Webmail deep-link URL formats for Gmail, Outlook, Proton, and Yahoo.

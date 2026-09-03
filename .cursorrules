@@ -1,0 +1,16 @@
+# Cursor & Windsurf AI Assistant Rules
+
+You are assisting development on `smart-mailto`.
+
+## Tech Stack & Tooling
+- Package manager: `pnpm` (Workspace monorepo)
+- Core package: `packages/smart-mailto` (TypeScript, built with `tsup`)
+- Web app: `apps/web` (React 19, Vite, Tailwind CSS v3, Lucide React)
+- Testing: `vitest`
+
+## Architectural Rules
+1. Zero runtime dependencies in `packages/smart-mailto`.
+2. SSR Safety: Never execute browser-only APIs (`window`, `navigator`, `document`) without guarding `typeof window !== 'undefined'`.
+3. Design language: Dark obsidian aesthetic (Linear/Raycast inspired), electric emerald accent (`#10b981`), `lucide-react` for all UI icons.
+4. Always run `pnpm test; pnpm -r typecheck` after modifying code in `packages/` or `apps/`.
+5. NEVER execute `git push` without explicit user confirmation.

@@ -1,0 +1,107 @@
+# smart-mailto — Full Machine-Readable Documentation
+
+## 1. Quickstart
+
+### React Hook: `useSmartMailto`
+```tsx
+import { useSmartMailto } from "smart-mailto/react";
+
+export function ContactSection() {
+  const { send, isCopied, copyAddress } = useSmartMailto({
+    recipient: "founders@acme.com",
+    subject: "Product Inquiry",
+    body: "Hi! I would like to learn more about your platform.",
+    telemetry: true, // Attaches URL, timestamp, and device environment to body
+  });
+
+  return (
+    <div className="flex gap-2">
+      {/* Opens Gmail / Outlook on desktop, or native mail app on mobile */}
+      <button onClick={() => send()}>Email Founders</button>
+      
+      {/* 1-click clipboard copy fallback */}
+      <button onClick={copyAddress}>{isCopied ? "Copied!" : "Copy Email"}</button>
+    </div>
+  );
+}
+```
+
+### Drop-in Components
+```tsx
+import { SmartMailtoButton, SmartMailtoMenu, SmartMailtoModal } from "smart-mailto/react";
+
+// 1. Drop-in Semantic Button
+<SmartMailtoButton recipient="team@acme.com" subject="General Inquiry">
+  Contact Team
+</SmartMailtoButton>
+
+// 2. Multi-Provider Menu
+<SmartMailtoMenu
+  recipient="support@acme.com"
+  subject="Help Request"
+  triggerLabel="Get Support"
+/>
+
+// 3. Zero-Backend Contact Modal
+<SmartMailtoModal
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  recipient="sales@acme.com"
+  title="Schedule Enterprise Demo"
+  subtitle="Opens directly in your email client ready to send."
+  theme="dark"
+/>
+```
+
+### Vanilla TypeScript / JavaScript
+```ts
+import { dispatchSmartEmail } from "smart-mailto";
+
+const button = document.getElementById("contact-button");
+
+button?.addEventListener("click", async () => {
+  const result = await dispatchSmartEmail({
+    recipient: "founders@acme.com",
+    subject: "Partnership Opportunity",
+    body: "Hello! We would love to collaborate.",
+  });
+
+  console.log("Dispatched via:", result.provider);
+  console.log("Popup blocked:", result.popupBlocked);
+});
+```
+
+---
+
+## 2. API Reference
+
+### `useSmartMailto(options: SmartMailtoOptions)`
+Primary React hook managing dispatch state, clipboard sync, and device detection.
+
+#### Options:
+- `recipient` (`string`, required): Destination email address.
+- `subject` (`string`, optional): Prefilled subject line.
+- `body` (`string`, optional): Prefilled email body text.
+- `cc` (`string | string[]`, optional): Carbon copy addresses.
+- `bcc` (`string | string[]`, optional): Blind carbon copy addresses.
+- `preferredProvider` (`"gmail" | "outlook" | "proton" | "yahoo" | "mailto"`, optional): Force a specific provider override.
+- `telemetry` (`boolean | TelemetryOptions`, optional): Whether to append page URL and timestamp metadata to the body.
+- `fallbackTimeoutMs` (`number`, optional): Detection window for popup blocker detection (default: 350ms).
+
+#### Returns:
+- `send(providerOverride?)`: Function returning `Promise<DispatchResult>`.
+- `copyAddress()`: Copies the recipient address to clipboard.
+- `copyDraft()`: Copies recipient, subject, and body to clipboard.
+- `isCopied`: Boolean indicating if copy feedback is active.
+- `isDispatching`: Boolean indicating dispatch in progress.
+- `isMobile`: Boolean indicating if current device was classified as mobile.
+
+---
+
+## 3. Core Framework-Agnostic Functions (`smart-mailto`)
+
+- `dispatchSmartEmail(options: SmartMailtoOptions): Promise<DispatchResult>`: Core dispatcher.
+- `detectClientDevice(): DeviceEnvironment`: Detects `isMobile`, `hasTouch`, `isCoarsePointer`, `screenWidth`.
+- `buildProviderUrl(provider: EmailProvider, options: SmartMailtoOptions): string`: Generates clean compose URLs.
+- `copyDraftToClipboard(options: SmartMailtoOptions): Promise<boolean>`: Formats and copies draft to clipboard.
+- `isUrlLengthSafe(url: string, maxLength?: number): boolean`: Validates if URI is under 2,000 chars.
