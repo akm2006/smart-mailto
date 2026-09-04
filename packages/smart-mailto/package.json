@@ -1,6 +1,6 @@
 {
   "name": "smart-mailto",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zero-dependency, zero-backend smart email dispatcher for modern web apps. Replaces broken desktop mailto: with Gmail, Outlook, Yahoo, Proton, and native fallback.",
   "type": "module",
   "main": "./dist/index.cjs",
